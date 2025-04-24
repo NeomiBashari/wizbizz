@@ -1,38 +1,35 @@
-// src/screens/LoginScreen.tsx
-
 import React from 'react';
-import { View, Alert } from 'react-native';
-import AuthForm from '../components/AuthForm';
-import { login } from '../services/auth';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../navigation/types';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
-// Defines navigation types for TypeScript safety
-type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
-
-const LoginScreen: React.FC = () => {
-  const navigation = useNavigation<LoginScreenNavigationProp>();
-
-  // Handles login form submission
-  const handleLogin = async (username: string, password: string) => {
-    try {
-      const success = await login(username, password);
-      if (success) {
-        navigation.navigate('Home'); // replace 'Home' with your next screen
-      } else {
-        Alert.alert('Login Failed', 'Invalid username or password');
-      }
-    } catch (error) {
-      Alert.alert('Error', 'Something went wrong');
-    }
-  };
-
+// Login screen component
+const LoginScreen = () => {
   return (
-    <View>
-      <AuthForm onSubmit={handleLogin} />
+    <View style={styles.container}>
+      <Text style={styles.title}>Login</Text>
+      <TextInput placeholder="Username" style={styles.input} />
+      <TextInput placeholder="Password" style={styles.input} secureTextEntry />
+      <Button title="Login" onPress={() => {}} />
     </View>
   );
 };
 
 export default LoginScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    backgroundColor: '#fff',
+  },
+  title: {
+    fontSize: 28,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  input: {
+    borderBottomWidth: 1,
+    marginBottom: 20,
+    fontSize: 18,
+  },
+});
