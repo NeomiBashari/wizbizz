@@ -68,7 +68,7 @@ export const themeStyles = {
     },
     forgotPassword: {
       fontSize: 14,
-      color: themeColors.linkText,
+      color: '#000',
     },
     loginButton: {
       backgroundColor: themeColors.buttonBg,
@@ -116,7 +116,7 @@ export const themeStyles = {
     signupContainer: {
       flexDirection: 'row' as const,
       justifyContent: 'center' as const,
-      marginTop: 5,
+      marginTop: -5,
     },
     signupText: {
       fontSize: 14,
@@ -199,7 +199,7 @@ export const themeStyles = {
     signupContainer: {
       flexDirection: 'row' as const,
       justifyContent: 'center' as const,
-      marginTop: 5,
+      marginTop: 0,
     }, 
     signupText: {
       fontSize: 14,
@@ -209,6 +209,30 @@ export const themeStyles = {
       fontSize: 14,
       color: themeColors.linkText,
       fontWeight: 'bold' as const,
+    },
+  },
+  homeScreen: {
+    container: {
+      flex: 1,
+      justifyContent: 'center' as const,
+      alignItems: 'center' as const,
+      backgroundColor: '#fff',
+    },
+    title: {
+      fontSize: 24,
+      fontWeight: 'bold' as const,
+      marginBottom: 20,
+    },
+    logoutButton: {
+      backgroundColor: '#ff6b6b',
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+      borderRadius: 5,
+    },
+    logoutText: {
+      color: '#fff',
+      fontWeight: 'bold' as const,
+      fontSize: 16,
     },
   },
 };

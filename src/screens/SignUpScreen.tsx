@@ -1,22 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/types';
 import { themeColors, themeStyles } from '../theme/theme';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { auth } from '../../config/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 type SignUpScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'SignUp'>;
 };
 
 const SignUpScreen = ({ navigation }: SignUpScreenProps) => {
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+const localNavigation = useNavigation();
+
+const handleSubmit = async () => {
+  if (email && password) {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password); 
+    } catch (error) {
+      console.error('Error signing up:', error);
+    }
+  }
+};
   return (
     <View style={{ flex: 1, backgroundColor: themeColors.bg }}>
       <SafeAreaView style={{ flex: 1 }}>
         <View>
           <TouchableOpacity 
-            onPress={() => navigation.goBack()} 
+            onPress={() => localNavigation.goBack()} 
             style={themeStyles.loginScreen.backButton}>
             <Ionicons name="arrow-back" size={24} color="black" />
           </TouchableOpacity>
@@ -31,26 +47,31 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps) => {
             <Text style={themeStyles.signupScreen.label}>Full Name</Text>
             <TextInput 
               style={themeStyles.signupScreen.input} 
-              placeholder="john snow" 
+              placeholder="youre-name" 
               placeholderTextColor={themeColors.placeholderText} 
             />
 
             <Text style={themeStyles.signupScreen.label}>Email Address</Text>
             <TextInput 
               style={themeStyles.signupScreen.input} 
-              placeholder="john@gmail.com" 
+              value={email}
+              onChangeText={value=> setEmail(value)}
+              placeholder="youre-email" 
               placeholderTextColor={themeColors.placeholderText} 
             />
 
             <Text style={themeStyles.signupScreen.label}>Password</Text>
             <TextInput 
               style={themeStyles.signupScreen.input} 
-              placeholder="********" 
+              placeholder="youre-password"
+              value={password}
+              onChangeText={value => setPassword(value)} 
               placeholderTextColor={themeColors.placeholderText}
               secureTextEntry 
             />
 
-            <TouchableOpacity style={themeStyles.signupScreen.loginButton}>
+            <TouchableOpacity style={themeStyles.signupScreen.loginButton} 
+              onPress={handleSubmit}>
               <Text style={themeStyles.loginScreen.loginButtonText}>Sign Up</Text>
             </TouchableOpacity>
           </View>

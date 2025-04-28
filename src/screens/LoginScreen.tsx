@@ -1,16 +1,38 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/types';
 import { themeColors, themeStyles } from '../theme/theme';
 import { Ionicons } from '@expo/vector-icons';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../config/firebase';
 
 type LogInScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Login'>;
 };
 
 const LoginScreen = ({ navigation }: LogInScreenProps) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      return;
+    }
+  
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log('Navigating to Home');
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Home' }],
+      });
+    } catch (error: any) {
+      console.error('Error logging in:', error);    
+    }
+  };
+
   return (
     <View style={{ flex: 1, backgroundColor: themeColors.bg }}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -22,7 +44,6 @@ const LoginScreen = ({ navigation }: LogInScreenProps) => {
           </TouchableOpacity>
         </View>
 
-        {/* תמונה */}
         <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 80 }}>
           <Image source={require('../../assets/images/login.png')} style={themeStyles.loginScreen.image} />
         </View>
@@ -32,23 +53,27 @@ const LoginScreen = ({ navigation }: LogInScreenProps) => {
             <Text style={themeStyles.loginScreen.label}>Email Address</Text>
             <TextInput 
               style={themeStyles.loginScreen.input} 
-              placeholder="john@gmail.com" 
+              placeholder="youre-email" 
               placeholderTextColor={themeColors.placeholderText} 
+              value={email}
+              onChangeText={setEmail}
             />
 
             <Text style={themeStyles.loginScreen.label}>Password</Text>
             <TextInput 
               style={themeStyles.loginScreen.input} 
-              placeholder="********" 
+              placeholder="youre-password" 
               placeholderTextColor={themeColors.placeholderText}
               secureTextEntry 
+              value={password}
+              onChangeText={setPassword}
             />
 
             <TouchableOpacity style={{ alignSelf: 'flex-end', marginBottom: 20 }}>
               <Text style={themeStyles.loginScreen.forgotPassword}>Forgot Password?</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={themeStyles.loginScreen.loginButton}>
+            <TouchableOpacity style={themeStyles.loginScreen.loginButton} onPress={handleLogin}>
               <Text style={themeStyles.loginScreen.loginButtonText}>Login</Text>
             </TouchableOpacity>
 
