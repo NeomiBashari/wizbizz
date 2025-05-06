@@ -6,27 +6,16 @@ import { RootStackParamList } from '../navigation/types';
 import { themeColors, themeStyles } from '../theme/theme';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { auth } from '../../config/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 type SignUpScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'SignUp'>;
 };
 
 const SignUpScreen = ({ navigation }: SignUpScreenProps) => {
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
-const localNavigation = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const localNavigation = useNavigation();
 
-const handleSubmit = async () => {
-  if (email && password) {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password); 
-    } catch (error) {
-      console.error('Error signing up:', error);
-    }
-  }
-};
   return (
     <View style={{ flex: 1, backgroundColor: themeColors.bg }}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -55,7 +44,7 @@ const handleSubmit = async () => {
             <TextInput 
               style={themeStyles.signupScreen.input} 
               value={email}
-              onChangeText={value=> setEmail(value)}
+              onChangeText={value => setEmail(value)}
               placeholder="youre-email" 
               placeholderTextColor={themeColors.placeholderText} 
             />
@@ -69,9 +58,10 @@ const handleSubmit = async () => {
               placeholderTextColor={themeColors.placeholderText}
               secureTextEntry 
             />
-
-            <TouchableOpacity style={themeStyles.signupScreen.loginButton} 
-              onPress={handleSubmit}>
+            <TouchableOpacity 
+              style={themeStyles.signupScreen.loginButton}
+              onPress={() => navigation.navigate('Home')} 
+            >
               <Text style={themeStyles.loginScreen.loginButtonText}>Sign Up</Text>
             </TouchableOpacity>
           </View>

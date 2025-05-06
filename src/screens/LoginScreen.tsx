@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/types';
 import { themeColors, themeStyles } from '../theme/theme';
 import { Ionicons } from '@expo/vector-icons';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../config/firebase';
 
 type LogInScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Login'>;
@@ -15,23 +13,6 @@ type LogInScreenProps = {
 const LoginScreen = ({ navigation }: LogInScreenProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const handleLogin = async () => {
-    if (!email || !password) {
-      return;
-    }
-  
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      console.log('Navigating to Home');
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'Home' }],
-      });
-    } catch (error: any) {
-      console.error('Error logging in:', error);    
-    }
-  };
 
   return (
     <View style={{ flex: 1, backgroundColor: themeColors.bg }}>
@@ -73,7 +54,11 @@ const LoginScreen = ({ navigation }: LogInScreenProps) => {
               <Text style={themeStyles.loginScreen.forgotPassword}>Forgot Password?</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={themeStyles.loginScreen.loginButton} onPress={handleLogin}>
+            {/* Updated Login Button */}
+            <TouchableOpacity 
+              style={themeStyles.loginScreen.loginButton}
+              onPress={() => navigation.navigate('Home')} // Change 'Home' to your target screen
+            >
               <Text style={themeStyles.loginScreen.loginButtonText}>Login</Text>
             </TouchableOpacity>
 
