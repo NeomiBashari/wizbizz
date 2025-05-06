@@ -1,5 +1,6 @@
 {
   "expo": {
-    "jsEngine": "jsc"
+    "name": "WizBizz",
+    "slug": "wizbizz"
   }
 }
