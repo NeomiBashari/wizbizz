@@ -18,7 +18,7 @@ const WelcomeScreen = ({ navigation }: WelcomeScreenProps) => {
       </Text>
 
     <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 30 }}>
-      <Image source={require('../../assets/images/welcome.png')} style={{ width: 350, height: 350 }} />
+      <Image source={require('../../assets/images/welcome.png')} style={{ width: 350, height: 250 }} />
     </View>
 </View>
 
