@@ -5,4 +5,6 @@ export type RootStackParamList = {
   Home: undefined;
   CalendarActions: { selectedDate: Date };
   Appointments: undefined;
+  ClientsList: undefined;
+  ClientProfile: { clientId: string };
 };

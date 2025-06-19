@@ -1,12 +1,37 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 import styles from './HomeScreen.styles';
+import ClientCard from '../../components/business/ClientCard/ClientCard';
+import clients from '../../data/clients';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../navigation/types';
+
+// SectionCard: reusable card for navigation grid
+const SectionCard = ({ icon, label, onPress }: { icon: any; label: string; onPress: () => void }) => (
+  <TouchableOpacity style={styles.sectionCard} onPress={onPress}>
+    <View style={styles.sectionCardIconWrapper}>
+      <Image source={icon} style={styles.sectionCardIcon} />
+    </View>
+    <Text style={styles.sectionCardLabel}>{label}</Text>
+  </TouchableOpacity>
+);
 
 const HomeScreen = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const recentClients = clients.slice(0, 10);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcomeText}>Welcome</Text>
-    </View>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 32 }}>
+      <Text style={styles.sectionTitle}>Clients</Text>
+      <View style={styles.sectionGrid}>
+        <SectionCard
+          icon={require('../../../assets/images/clients-icon.png')}
+          label="All Clients"
+          onPress={() => navigation.navigate('ClientsList')}
+        />
+      </View>
+    </ScrollView>
   );
 };
 
