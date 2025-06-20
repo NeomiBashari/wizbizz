@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { themeColors } from '../../theme/theme';
 
 const styles = StyleSheet.create({
   overlay: {
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
   },
   save: {
-    backgroundColor: '#6a4cff',
+    backgroundColor: themeColors.accentSalmon,
   },
   buttonText: {
     fontSize: 16,
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   },
   saveButtonText: {
     fontSize: 16,
-    color: '#fff',
+    color: '#000',
     fontWeight: '600',
   },
 });

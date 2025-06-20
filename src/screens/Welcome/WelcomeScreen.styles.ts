@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   image: {
-    width: 350,
-    height: 250,
+    width: 450,
+    height: 350,
     resizeMode: 'contain',
   },
   actions: {
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   loginLabel: {
-    color: themeColors.textSecondary,
+    color: '#888',
     fontWeight: '600',
   },
   loginLink: {

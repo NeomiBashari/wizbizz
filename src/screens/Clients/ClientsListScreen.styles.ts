@@ -1,16 +1,24 @@
 import { StyleSheet } from 'react-native';
+import { themeColors } from '../../theme/theme';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: themeColors.bg,
     paddingTop: 48,
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 8,
+    marginTop: 8,
   },
   header: {
     fontSize: 32,
     fontWeight: '700',
     color: '#222',
-    marginBottom: 18,
+    marginBottom: 0,
     alignSelf: 'center',
   },
   listContent: {
@@ -27,7 +35,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#6a4cff',
+    backgroundColor: themeColors.buttonBg,
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 6,
@@ -37,7 +45,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
   },
   fabText: {
-    color: '#fff',
+    color: '#000',
     fontSize: 32,
     fontWeight: '700',
   },
@@ -56,6 +64,44 @@ const styles = StyleSheet.create({
   emptyText: {
     color: '#888',
     fontSize: 18,
+  },
+  searchInput: {
+    height: 44,
+    borderRadius: 12,
+    backgroundColor: '#fff',
+    borderWidth: 0,
+    marginHorizontal: 16,
+    marginBottom: 16,
+    paddingHorizontal: 16,
+    fontSize: 16,
+    color: '#222',
+    shadowColor: '#000',
+    shadowOpacity: 0.07,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
+  },
+  searchButton: {
+    marginLeft: 18,
+    paddingVertical: 6,
+    paddingHorizontal: 8,
+    alignSelf: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    minWidth: 32,
+    minHeight: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.07,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
+  },
+  searchIcon: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
   },
 });
 

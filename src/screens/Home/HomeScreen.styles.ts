@@ -5,11 +5,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: themeColors.bg,
+    paddingTop: 0,
+    overflow: 'hidden',
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#222',
+    color: themeColors.textPrimary,
     marginTop: 24,
     marginBottom: 8,
     marginLeft: 8,
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   sectionCardIconWrapper: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: themeColors.inputBackground,
     borderRadius: 32,
     width: 48,
     height: 48,
@@ -66,9 +68,47 @@ const styles = StyleSheet.create({
   },
   sectionCardLabel: {
     fontSize: 15,
-    color: '#222',
+    color: themeColors.textPrimary,
     fontWeight: '500',
   },
+  heroContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+    paddingTop: 48,
+    paddingBottom: 40,
+    shadowColor: '#000',
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
+  },
+  heroTitle: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: themeColors.textPrimary,
+    textAlign: 'center',
+    marginBottom: 8,
+    letterSpacing: 0.5,
+    textShadowColor: 'rgba(0,0,0,0.08)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 6,
+  },
+  heroSubtitle: {
+    fontSize: 18,
+    color: themeColors.textPrimary,
+    opacity: 0.92,
+    textAlign: 'center',
+    fontWeight: '400',
+    letterSpacing: 0.2,
+    textShadowColor: 'rgba(0,0,0,0.06)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 4,
+  },
+  scrollView: {
+    backgroundColor: themeColors.white,
+    borderRadius: 32,
+  }
 });
 
 export default styles;

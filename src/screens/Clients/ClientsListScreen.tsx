@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image, Alert } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Image, Alert, TextInput } from 'react-native';
 import clientsData from '../../data/clients';
 import ClientCard from '../../components/business/ClientCard/ClientCard';
 import AddClientModal from '../../components/modals/AddClientModal';
@@ -8,6 +8,8 @@ import styles from './ClientsListScreen.styles';
 const ClientsListScreen: React.FC = () => {
   const [clients, setClients] = useState(clientsData);
   const [modalVisible, setModalVisible] = useState(false);
+  const [search, setSearch] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
 
   const handleAddClient = (client: { fullName: string; phoneNumber: string; email: string; notes: string }) => {
     setClients(prev => [
@@ -53,6 +55,11 @@ const ClientsListScreen: React.FC = () => {
     }
   };
 
+  const filteredClients = clients.filter(client =>
+    client.fullName.toLowerCase().includes(search.toLowerCase()) ||
+    client.phoneNumber.replace(/\D/g, '').includes(search.replace(/\D/g, ''))
+  );
+
   const renderItem = ({ item }: any) => (
     <View style={styles.cardWrapper}>
       <ClientCard
@@ -69,15 +76,30 @@ const ClientsListScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Clients</Text>
-      {clients.length === 0 ? (
+      <View style={styles.headerRow}>
+        <Text style={styles.header}>All Clients</Text>
+        <TouchableOpacity style={styles.searchButton} onPress={() => setShowSearch(s => !s)}>
+          <Image source={require('../../../assets/images/search-clients-icon.png')} style={styles.searchIcon} />
+        </TouchableOpacity>
+      </View>
+      {showSearch && (
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search by name or phone number"
+          value={search}
+          onChangeText={setSearch}
+          placeholderTextColor="#888"
+          autoFocus
+        />
+      )}
+      {filteredClients.length === 0 ? (
         <View style={styles.emptyState}>
           <Image source={require('../../../assets/images/face.png')} style={styles.emptyImage} />
-          <Text style={styles.emptyText}>No clients yet</Text>
+          <Text style={styles.emptyText}>No clients found</Text>
         </View>
       ) : (
         <FlatList
-          data={clients}
+          data={filteredClients}
           renderItem={renderItem}
           keyExtractor={item => item.id}
           contentContainerStyle={styles.listContent}
