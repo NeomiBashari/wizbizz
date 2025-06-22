@@ -1,0 +1,130 @@
+import { StyleSheet } from 'react-native';
+import { themeColors } from '../../theme/theme';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: themeColors.white, 
+  },
+  content: {
+    padding: 20,
+    marginTop: 35,
+    marginBottom: 20,
+  },
+  name: {
+    fontSize: 26,
+    fontWeight: '700',
+    color: themeColors.textPrimary,
+    marginBottom: 15,
+    textAlign: 'center',
+    marginTop: 20,
+  },
+  phone: {
+    fontSize: 16,
+    color: themeColors.textSecondary,
+    marginBottom: 28,
+    textAlign: 'center',
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: themeColors.textPrimary,
+    marginBottom: 28, 
+    marginTop: 70,
+    marginLeft: 8,
+  },
+  appointmentCard: {
+    backgroundColor: themeColors.white,
+    borderRadius: 12,
+    padding: 14,
+    marginBottom: 12,
+    shadowColor: '#000',
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
+  },
+  appointmentListWrapper: {
+    backgroundColor: '#f6f7fb', // רקע חיצוני עדין
+    borderRadius: 24,
+    padding: 8,
+    marginTop: 0,
+    alignSelf: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.10,
+    shadowRadius: 32,
+    shadowOffset: { width: 0, height: 12 },
+    elevation: 18,
+  },
+  appointmentList: {
+    backgroundColor: themeColors.white,
+    borderRadius: 16,
+    maxHeight: 480,
+    minHeight: 180, 
+    width: '88%',
+    borderWidth: 1,
+    borderColor: themeColors.lightGray,
+    alignSelf: 'center',
+    shadowColor: '#bdbdbd',
+    shadowOpacity: 0.13,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 4,
+  },
+  appointmentRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: themeColors.lightGray,
+    backgroundColor: 'transparent',
+    marginBottom: 2,
+  },
+  appointmentDateTime: {
+    flex: 2,
+    flexDirection: 'column',
+  },
+  appointmentDate: {
+    fontSize: 13,
+    color: themeColors.textPrimary,
+    fontWeight: '500',
+  },
+  appointmentTime: {
+    fontSize: 12,
+    color: '#888',
+    marginTop: -2,
+    marginBottom: 0,
+  },
+  appointmentStatus: {
+    fontSize: 12,
+    fontWeight: '700',
+    textAlign: 'right',
+    borderRadius: 8,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    marginLeft: 16,
+    alignSelf: 'flex-start', 
+    minWidth: 0,
+  },
+  lastAppointmentRow: {
+    borderBottomWidth: 0,
+  },
+  statusDone: {
+    color: '#219653',
+    backgroundColor: '#eafaf1',
+    alignSelf: 'flex-start', 
+  },
+  statusCanceled: {
+    color: '#d32f2f',
+    backgroundColor: '#fdeaea',
+    alignSelf: 'flex-start',
+  },
+  statusUpcoming: {
+    color: '#888',
+    backgroundColor: '#f2f2f2',
+    alignSelf: 'flex-start',
+  },
+});
+
+export default styles;

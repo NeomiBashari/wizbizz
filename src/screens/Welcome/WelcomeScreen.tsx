@@ -20,15 +20,15 @@ const WelcomeScreen = ({ navigation }: WelcomeScreenProps) => {
       </View>
       <View style={styles.actions}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('SignUp')}
+          onPress={() => navigation.navigate('Login')}
           style={styles.signupBtn}
         >
-          <Text style={styles.signupBtnText}>Sign Up</Text>
+          <Text style={styles.signupBtnText}>Log In</Text>
         </TouchableOpacity>
         <View style={styles.loginRow}>
-          <Text style={styles.loginLabel}>Already have an account?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-            <Text style={styles.loginLink}>Log in</Text>
+          <Text style={styles.loginLabel}>Don't have an account?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+            <Text style={styles.loginLink}>Sign Up</Text>
           </TouchableOpacity>
         </View>
       </View>

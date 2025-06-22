@@ -26,7 +26,6 @@ const HomeScreen = () => {
         <Text style={styles.heroSubtitle}>Here Your Smart Business Hub</Text>
       </View>
       <ScrollView contentContainerStyle={{ paddingBottom: 32 }} style={styles.scrollView} >
-        <Text style={styles.sectionTitle}>Clients</Text>
         <View style={styles.sectionGrid}>
           <SectionCard
             icon={require('../../../assets/images/clients-icon.png')}

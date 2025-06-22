@@ -18,6 +18,10 @@ const styles = StyleSheet.create({
     maxWidth: '100%',
     gap: 10,
   },
+  cardPressed: {
+    backgroundColor: '#f0f0f0', // צבע רקע עדין במצב לחוץ
+    // אפשר להוסיף אפקט נוסף כמו scale או border
+  },
   avatar: {
     width: 56,
     height: 56,
@@ -50,12 +54,6 @@ const styles = StyleSheet.create({
   created: {
     fontSize: 12,
     color: '#aaa',
-  },
-  appointment: {
-    fontSize: 13,
-    color: '#6a4cff',
-    fontWeight: '500',
-    marginTop: 1,
   },
   actions: {
     flexDirection: 'column',
@@ -111,6 +109,57 @@ const styles = StyleSheet.create({
     color: '#00bcd4',
     fontWeight: '700',
     fontSize: 13,
+  },
+  menuButton: {
+    padding: 6,
+    borderRadius: 20,
+    backgroundColor: '#f5f5f5',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 8,
+    shadowColor: '#000',
+    shadowOpacity: 0.18, // חיזוק הצללה
+    shadowRadius: 8, // חיזוק הצללה
+    shadowOffset: { width: 0, height: 3 }, // חיזוק הצללה
+    elevation: 6, // חיזוק הצללה
+  },
+  menuOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.12)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  menuContainer: {
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    minWidth: 180,
+    shadowColor: '#000',
+    shadowOpacity: 0.13,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 8,
+    alignItems: 'flex-start',
+  },
+  menuItem: {
+    paddingVertical: 10,
+    width: '100%',
+  },
+  menuItemDelete: {
+    color: '#d32f2f',
+    fontWeight: '700',
+    fontSize: 16,
+  },
+  menuItemBlock: {
+    color: '#b00020',
+    fontWeight: '600',
+    fontSize: 16,
+  },
+  menuItemUnblock: {
+    color: '#219653',
+    fontWeight: '600',
+    fontSize: 16,
   },
 });
 

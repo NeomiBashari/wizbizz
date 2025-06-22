@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 8,
+    marginBottom: 24, 
     marginTop: 8,
   },
   header: {
@@ -24,9 +24,6 @@ const styles = StyleSheet.create({
   listContent: {
     paddingBottom: 100,
     paddingHorizontal: 16,
-  },
-  cardWrapper: {
-    marginBottom: 16,
   },
   fab: {
     position: 'absolute',
@@ -83,13 +80,11 @@ const styles = StyleSheet.create({
   },
   searchButton: {
     marginLeft: 18,
-    paddingVertical: 6,
-    paddingHorizontal: 8,
     alignSelf: 'center',
     backgroundColor: '#fff',
-    borderRadius: 20,
-    minWidth: 32,
-    minHeight: 32,
+    borderRadius: 32,
+    minWidth: 44,
+    minHeight: 44,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
@@ -99,8 +94,8 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   searchIcon: {
-    width: 20,
-    height: 20,
+    width: 32,
+    height: 32,
     resizeMode: 'contain',
   },
 });

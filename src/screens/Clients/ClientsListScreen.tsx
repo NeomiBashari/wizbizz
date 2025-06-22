@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image, Alert, TextInput } from 'react-native';
 import clientsData from '../../data/clients';
 import ClientCard from '../../components/business/ClientCard/ClientCard';
 import AddClientModal from '../../components/modals/AddClientModal';
 import styles from './ClientsListScreen.styles';
+import { RootStackParamList } from '../../navigation/types';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const ClientsListScreen: React.FC = () => {
   const [clients, setClients] = useState(clientsData);
   const [modalVisible, setModalVisible] = useState(false);
   const [search, setSearch] = useState('');
   const [showSearch, setShowSearch] = useState(false);
+
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+  const filteredClients = useMemo(() => {
+    const searchValue = search.trim().toLowerCase();
+    const searchPhone = search.replace(/\D/g, '');
+    if (!searchValue && !searchPhone) return clients;
+    return clients.filter(client => {
+      const nameValue = client.fullName.trim().toLowerCase();
+      const phoneValue = client.phoneNumber.replace(/\D/g, '');
+      if (searchValue && !searchPhone) return nameValue.includes(searchValue);
+      if (!searchValue && searchPhone) return phoneValue.includes(searchPhone);
+      return nameValue.includes(searchValue) || phoneValue.includes(searchPhone);
+    });
+  }, [clients, search]);
 
   const handleAddClient = (client: { fullName: string; phoneNumber: string; email: string; notes: string }) => {
     setClients(prev => [
@@ -34,44 +52,36 @@ const ClientsListScreen: React.FC = () => {
   };
 
   const handleToggleBlockClient = (id: string, isBlocked: boolean, name: string) => {
-    if (!isBlocked) {
-      Alert.alert(
-        'Block Client',
-        `Are you sure you want to block ${name}? They will not be able to book appointments until unblocked.`,
-        [
-          { text: 'Cancel', style: 'cancel' },
-          { text: 'Block', style: 'destructive', onPress: () => setClients(prev => prev.map(client => client.id === id ? { ...client, isBlocked: true } : client)) },
-        ]
-      );
-    } else {
-      Alert.alert(
-        'Unblock Client',
-        `Are you sure you want to unblock ${name}? They will be able to book appointments again.`,
-        [
-          { text: 'Cancel', style: 'cancel' },
-          { text: 'Unblock', style: 'default', onPress: () => setClients(prev => prev.map(client => client.id === id ? { ...client, isBlocked: false } : client)) },
-        ]
-      );
-    }
+    Alert.alert(
+      isBlocked ? 'Unblock Client' : 'Block Client',
+      isBlocked
+        ? `Are you sure you want to unblock ${name}? They will be able to book appointments again.`
+        : `Are you sure you want to block ${name}? They will not be able to book appointments until unblocked.`,
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: isBlocked ? 'Unblock' : 'Block',
+          style: isBlocked ? 'default' : 'destructive',
+          onPress: () => setClients(prev => prev.map(client => client.id === id ? { ...client, isBlocked: !isBlocked } : client)),
+        },
+      ]
+    );
   };
 
-  const filteredClients = clients.filter(client =>
-    client.fullName.toLowerCase().includes(search.toLowerCase()) ||
-    client.phoneNumber.replace(/\D/g, '').includes(search.replace(/\D/g, ''))
-  );
+  const handleNavigateToClientProfile = (clientId: string) => {
+    navigation.navigate('ClientProfile', { clientId });
+  };
 
   const renderItem = ({ item }: any) => (
-    <View style={styles.cardWrapper}>
-      <ClientCard
-        clientName={item.fullName}
-        phoneNumber={item.phoneNumber}
-        createdAt={item.createdAt}
-        upcomingAppointment={item.upcomingAppointment}
-        onDelete={() => handleDeleteClient(item.id, item.fullName)}
-        onBlock={() => handleToggleBlockClient(item.id, !!item.isBlocked, item.fullName)}
-        isBlocked={item.isBlocked}
-      />
-    </View>
+    <ClientCard
+      clientName={item.fullName}
+      phoneNumber={item.phoneNumber}
+      createdAt={item.createdAt}
+      onPress={() => handleNavigateToClientProfile(item.id)}
+      onDelete={() => handleDeleteClient(item.id, item.fullName)}
+      onBlock={() => handleToggleBlockClient(item.id, !!item.isBlocked, item.fullName)}
+      isBlocked={item.isBlocked}
+    />
   );
 
   return (
@@ -94,7 +104,7 @@ const ClientsListScreen: React.FC = () => {
       )}
       {filteredClients.length === 0 ? (
         <View style={styles.emptyState}>
-          <Image source={require('../../../assets/images/face.png')} style={styles.emptyImage} />
+          <Image source={require('../../../assets/images/clients-icon.png')} style={styles.emptyImage} />
           <Text style={styles.emptyText}>No clients found</Text>
         </View>
       ) : (

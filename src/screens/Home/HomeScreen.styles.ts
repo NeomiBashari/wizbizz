@@ -47,10 +47,12 @@ const styles = StyleSheet.create({
     width: 110,
     height: 110,
     shadowColor: '#000',
-    shadowOpacity: 0.07,
+    shadowOpacity: 0.20,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 2 },
     elevation: 2,
+    marginTop: 20,
+    marginLeft: 8,
   },
   sectionCardIconWrapper: {
     backgroundColor: themeColors.inputBackground,
@@ -108,6 +110,7 @@ const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: themeColors.white,
     borderRadius: 32,
+    marginTop: -30,
   }
 });
 
