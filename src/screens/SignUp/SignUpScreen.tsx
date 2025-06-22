@@ -70,13 +70,13 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps) => {
 
           <View style={styles.socialButtonsContainer}>
             <TouchableOpacity style={styles.socialButton}>
-              <Image source={require('../../../assets/images/google.png')} style={styles.socialIcon} />
+              <Image source={require('../../../assets/icons/google.png')} style={styles.socialIcon} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.socialButton}>
-              <Image source={require('../../../assets/images/apple.png')} style={styles.socialIcon} />
+              <Image source={require('../../../assets/icons/apple.png')} style={styles.socialIcon} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.socialButton}>
-              <Image source={require('../../../assets/images/facebook.png')} style={styles.socialIcon} />
+              <Image source={require('../../../assets/icons/facebook.png')} style={styles.socialIcon} />
             </TouchableOpacity>
           </View>
 

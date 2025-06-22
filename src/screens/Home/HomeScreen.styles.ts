@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   sectionGrid: {
     flexDirection: 'row',
-    gap: 16,
+    gap: 30,
     marginHorizontal: 8,
     marginBottom: 12,
   },
@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 16,
-    width: 110,
-    height: 110,
+    width: 160,
+    height: 140,
     shadowColor: '#000',
-    shadowOpacity: 0.20,
+    shadowOpacity: 0.30,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 2 },
     elevation: 2,
@@ -57,19 +57,19 @@ const styles = StyleSheet.create({
   sectionCardIconWrapper: {
     backgroundColor: themeColors.inputBackground,
     borderRadius: 32,
-    width: 48,
-    height: 48,
+    width: 58,
+    height: 58,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 8,
   },
   sectionCardIcon: {
-    width: 32,
-    height: 32,
+    width: 52,
+    height: 52,
     resizeMode: 'contain',
   },
   sectionCardLabel: {
-    fontSize: 15,
+    fontSize: 18,
     color: themeColors.textPrimary,
     fontWeight: '500',
   },
@@ -109,7 +109,8 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     backgroundColor: themeColors.white,
-    borderRadius: 32,
+    borderTopRightRadius: 32,
+    borderTopLeftRadius: 32,
     marginTop: -30,
   }
 });

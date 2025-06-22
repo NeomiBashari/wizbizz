@@ -89,7 +89,7 @@ const ClientsListScreen: React.FC = () => {
       <View style={styles.headerRow}>
         <Text style={styles.header}>All Clients</Text>
         <TouchableOpacity style={styles.searchButton} onPress={() => setShowSearch(s => !s)}>
-          <Image source={require('../../../assets/images/search-clients-icon.png')} style={styles.searchIcon} />
+          <Image source={require('../../../assets/icons/search-clients-icon.png')} style={styles.searchIcon} />
         </TouchableOpacity>
       </View>
       {showSearch && (
@@ -104,7 +104,7 @@ const ClientsListScreen: React.FC = () => {
       )}
       {filteredClients.length === 0 ? (
         <View style={styles.emptyState}>
-          <Image source={require('../../../assets/images/clients-icon.png')} style={styles.emptyImage} />
+          <Image source={require('../../../assets/icons/clients-icon.png')} style={styles.emptyImage} />
           <Text style={styles.emptyText}>No clients found</Text>
         </View>
       ) : (
