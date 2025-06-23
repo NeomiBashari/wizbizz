@@ -19,8 +19,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   cardPressed: {
-    backgroundColor: '#f0f0f0', // צבע רקע עדין במצב לחוץ
-    // אפשר להוסיף אפקט נוסף כמו scale או border
+    backgroundColor: '#f0f0f0', 
   },
   avatar: {
     width: 56,
@@ -101,7 +100,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   btnUnblock: {
-    backgroundColor: '#e0f7fa', // טורקיז בהיר, מודרני, מושך תשומת לב
+    backgroundColor: '#e0f7fa',
     borderWidth: 1,
     borderColor: '#00bcd4',
   },

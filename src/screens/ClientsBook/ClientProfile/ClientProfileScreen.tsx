@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { RootStackParamList } from '../../navigation/types';
-import clients from '../../data/clients';
-import { generateFakeAppointmentsForClients, getAppointmentsByClientId, Appointment } from '../../data/appointments';
+import { RootStackParamList } from '../../../navigation/types';
+import clients from '../../../data/clients';
+import { generateFakeAppointmentsForClients, getAppointmentsByClientId, Appointment } from '../../../data/appointments';
 import styles from './ClientProfileScreen.styles';
 
 const getStatusStyle = (status: Appointment['status']) => {

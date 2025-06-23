@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image, Alert, TextInput } from 'react-native';
-import clientsData from '../../data/clients';
-import ClientCard from '../../components/business/ClientCard/ClientCard';
-import AddClientModal from '../../components/modals/AddClientModal';
+import clientsData from '../../../data/clients';
+import ClientCard from '../../../components/ClientsBookCom/ClientCard/ClientCard';
+import AddClientModal from '../../../components/modals/AddClientModal';
 import styles from './ClientsListScreen.styles';
-import { RootStackParamList } from '../../navigation/types';
+import { RootStackParamList } from '../../../navigation/types';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
@@ -89,7 +89,7 @@ const ClientsListScreen: React.FC = () => {
       <View style={styles.headerRow}>
         <Text style={styles.header}>All Clients</Text>
         <TouchableOpacity style={styles.searchButton} onPress={() => setShowSearch(s => !s)}>
-          <Image source={require('../../../assets/icons/search-clients-icon.png')} style={styles.searchIcon} />
+          <Image source={require('../../../../assets/icons/search-clients-icon.png')} style={styles.searchIcon} />
         </TouchableOpacity>
       </View>
       {showSearch && (
@@ -104,7 +104,7 @@ const ClientsListScreen: React.FC = () => {
       )}
       {filteredClients.length === 0 ? (
         <View style={styles.emptyState}>
-          <Image source={require('../../../assets/icons/clients-icon.png')} style={styles.emptyImage} />
+          <Image source={require('../../../../assets/icons/clients-icon.png')} style={styles.emptyImage} />
           <Text style={styles.emptyText}>No clients found</Text>
         </View>
       ) : (
